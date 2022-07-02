@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
   name: "swift-quic",
-  platforms: [.macOS(.v10_15)],
+  platforms: [.macOS(.v12)],
   products: [
     .library(
       name: "Quic",
@@ -12,15 +12,16 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/PureSwift/Socket.git", from: "0.0.0"),
     .package(url: "https://github.com/kennethlaskoski/swift-quiche.git", branch: "main"),
+    .package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0"),
   ],
   targets: [
     .target(
       name: "Quic",
       dependencies: [
-        .product(name: "Socket", package: "Socket"),
         .product(name: "SwiftQuiche", package: "swift-quiche"),
+        .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOPosix", package: "swift-nio"),
       ]
     ),
     .testTarget(

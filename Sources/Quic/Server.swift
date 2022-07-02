@@ -5,27 +5,23 @@
 //  Created by Kenneth Laskoski on 04/06/22.
 //
 
-import Socket
+import NIOCore
+import NIOPosix
+import SwiftQuiche
 
-public struct Server {
-  private let socket: Socket
-  public init() async throws {
-    let address = IPv4SocketAddress(address: .any, port: 8888)
-    socket = try await Socket(
-        IPv4Protocol.tcp,
-        bind: address
-    )
-    try socket.fileDescriptor.listen(backlog: 10)
-  }
+private final class ServerHandler: ChannelInboundHandler {
+  public typealias InboundIn = ByteBuffer
 
-  public static func bootstrap() async throws -> Server {
-    try await Server()
-  }
+  private let bufferSize = 0xFFFF
+  private let datagramSize = 1350
+  private let config = quiche_config_new(UInt32(QUICHE_PROTOCOL_VERSION))
 
-  public func accept() async throws -> Connection {
-    let newConnection = await Socket(
-        fileDescriptor: try await socket.fileDescriptor.accept()
-    )
-    return Connection(socket: newConnection)
+  private var buffer: [UInt8]
+  private var out: [UInt8]
+
+  init() {
+    buffer = [UInt8](repeating: 0, count: bufferSize)
+    out = [UInt8](repeating: 0, count: datagramSize)
   }
 }
+

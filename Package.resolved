@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "socket",
+      "identity" : "swift-nio",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PureSwift/Socket.git",
+      "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "7f3af74c859be71be2e1539d540bd38c8a9c6f33",
-        "version" : "0.2.2"
+        "revision" : "124119f0bb12384cef35aa041d7c3a686108722d",
+        "version" : "2.40.0"
       }
     },
     {
@@ -15,16 +15,16 @@
       "location" : "https://github.com/kennethlaskoski/swift-quiche.git",
       "state" : {
         "branch" : "main",
-        "revision" : "9d3b5130f791ad14ca06c4c3b526e4297225eb39"
+        "revision" : "530901d73c1c55809998aac09838bc64cac1bc78"
       }
     },
     {
-      "identity" : "swift-system",
+      "identity" : "xc-quiche",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-system",
+      "location" : "https://github.com/kennethlaskoski/xc-quiche.git",
       "state" : {
-        "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
-        "version" : "1.2.1"
+        "branch" : "main",
+        "revision" : "589b29d31f2c042a02dcd139e7a55afc8210d258"
       }
     }
   ],
